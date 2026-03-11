@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { ShieldCheck, Lock, Mail, Phone } from "lucide-react"
+import Image from "next/image"
+import { Lock, Mail, Phone } from "lucide-react"
 
 export function Footer() {
   return (
@@ -7,11 +8,14 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="flex items-center justify-center p-1.5 bg-white/10 rounded-lg">
-                <ShieldCheck className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-xl font-bold tracking-tight text-white">Integrare</span>
+            <Link href="/" className="flex items-center gap-2 mb-6">
+              <Image 
+                src="/files/logo.svg" 
+                alt="Integrare Compliance" 
+                width={160} 
+                height={40} 
+                className="h-8 w-auto brightness-0 invert" // This CSS trick forces any colored SVG to render as pure white!
+              />
             </Link>
             <p className="text-sm text-brand-surface/80 leading-relaxed mb-6">
               Plataforma digital especializada em Canais de Denúncias parcerias corporativas, com foco em segurança, compliance e adequação legal.
