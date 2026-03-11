@@ -1,9 +1,10 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { FileText, AlertTriangle, CheckCircle2, Clock } from "lucide-react"
+import { useEffect, useState, useMemo } from "react"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { FileText, AlertTriangle, CheckCircle2, Clock, BarChart3, TrendingUp } from "lucide-react"
 import Link from "next/link"
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend } from "recharts"
 
 export default function DashboardPage() {
   const [reports, setReports] = useState<any[]>([])
@@ -42,12 +43,35 @@ export default function DashboardPage() {
     return <span className="text-muted text-xs">-</span>
   }
 
-  const stats = {
-    total: reports.length,
-    novos: reports.filter(r => r.status === "NOVO").length,
-    emAndamento: reports.filter(r => ["EM_TRIAGEM", "EM_ANALISE", "EM_APURACAO", "AGUARDANDO_INFO"].includes(r.status)).length,
-    concluidos: reports.filter(r => r.status === "CONCLUIDO").length,
+  const stats = useMemo(() => {
+    return {
+      total: reports.length,
+      novos: reports.filter(r => r.status === "NOVO").length,
+      emAndamento: reports.filter(r => ["EM_TRIAGEM", "EM_ANALISE", "EM_APURACAO", "AGUARDANDO_INFO"].includes(r.status)).length,
+      concluidos: reports.filter(r => r.status === "CONCLUIDO").length,
+    }
+  }, [reports])
+
+  // Data for charts
+  const categoryData = useMemo(() => {
+    const acc: Record<string, number> = {}
+    reports.forEach(r => {
+      acc[r.category] = (acc[r.category] || 0) + 1
+    })
+    return Object.keys(acc).map(key => ({ name: key, value: acc[key] }))
+  }, [reports])
+
+  const severityData = useMemo(() => {
+    const acc: Record<string, number> = { "BAIXO": 0, "MEDIO": 0, "ALTO": 0, "CRITICO": 0, "NAO_CLASSIFICADO": 0 }
+    reports.forEach(r => { acc[r.severity] = (acc[r.severity] || 0) + 1 })
+    // Only return ones with values > 0
+    return Object.keys(acc).filter(key => acc[key] > 0).map(key => ({ name: key, count: acc[key] }))
+  }, [reports])
+
+  const severityColors: Record<string, string> = {
+    "BAIXO": "#10b981", "MEDIO": "#f59e0b", "ALTO": "#ef4444", "CRITICO": "#7f1d1d", "NAO_CLASSIFICADO": "#9ca3af"
   }
+  const CATEGORY_COLORS = ["#123C33", "#1F6B57", "#1E8E5A", "#C58A16", "#B94141", "#5F6B66"]
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto">
@@ -97,6 +121,67 @@ export default function DashboardPage() {
               <p className="text-sm text-muted font-medium">Concluídos</p>
               <h3 className="text-2xl font-bold text-brand-secondary">{loading ? "-" : stats.concluidos}</h3>
             </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card className="border-border shadow-sm">
+          <CardHeader className="bg-gray-50/50 border-b pb-4">
+            <CardTitle className="flex items-center gap-2 text-lg text-brand-secondary">
+              <BarChart3 className="w-5 h-5 text-brand-accent" />
+              Relatos por Gravidade
+            </CardTitle>
+            <CardDescription>Volume de chamados categorizados pelo risco.</CardDescription>
+          </CardHeader>
+          <CardContent className="p-6 h-[300px]">
+            {loading ? (
+              <div className="h-full flex items-center justify-center text-muted">Aguardando dados...</div>
+            ) : severityData.length === 0 ? (
+              <div className="h-full flex items-center justify-center text-muted">Sem dados suficientes</div>
+            ) : (
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={severityData} margin={{ top: 10, right: 30, left: -20, bottom: 0 }}>
+                  <XAxis dataKey="name" tick={{ fontSize: 11 }} />
+                  <YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
+                  <Tooltip cursor={{ fill: '#EAF4F0' }} contentStyle={{ borderRadius: '8px', border: '1px solid #D7E2DD' }} />
+                  <Bar dataKey="count" radius={[4, 4, 0, 0]}>
+                    {severityData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={severityColors[entry.name] || "#1E2421"} />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card className="border-border shadow-sm">
+          <CardHeader className="bg-gray-50/50 border-b pb-4">
+            <CardTitle className="flex items-center gap-2 text-lg text-brand-secondary">
+              <TrendingUp className="w-5 h-5 text-brand-accent" />
+              Incidência por Categoria
+            </CardTitle>
+            <CardDescription>Principais ofensores no canal de denúncias.</CardDescription>
+          </CardHeader>
+          <CardContent className="p-6 h-[300px]">
+             {loading ? (
+              <div className="h-full flex items-center justify-center text-muted">Aguardando dados...</div>
+            ) : categoryData.length === 0 ? (
+               <div className="h-full flex items-center justify-center text-muted">Sem dados suficientes</div>
+            ) : (
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie data={categoryData} cx="50%" cy="50%" outerRadius={90} innerRadius={60} dataKey="value" stroke="none" paddingAngle={3}>
+                    {categoryData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={CATEGORY_COLORS[index % CATEGORY_COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip wrapperStyle={{ zIndex: 1000 }} contentStyle={{ borderRadius: '8px', border: '1px solid #D7E2DD', fontSize: '13px' }} />
+                  <Legend iconType="circle" wrapperStyle={{ fontSize: '12px' }} />
+                </PieChart>
+              </ResponsiveContainer>
+            )}
           </CardContent>
         </Card>
       </div>

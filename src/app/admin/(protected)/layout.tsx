@@ -23,9 +23,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           <Link href="/admin/dashboard" className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white/10 text-white font-medium">
             <LayoutDashboard className="w-4 h-4" /> Dashboard
           </Link>
-          <a href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 text-brand-surface/70 hover:text-white transition-colors">
-            <FileText className="w-4 h-4" /> Relatórios Export
-          </a>
+          <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-brand-surface/40 cursor-not-allowed">
+            <FileText className="w-4 h-4" /> Relatórios (Em Breve)
+          </div>
         </nav>
         <div className="p-4 border-t border-white/10">
           <div className="flex items-center gap-3 px-3 py-2 mb-2">

@@ -82,8 +82,7 @@ export default function AdminLoginPage() {
             </form>
             
             <div className="mt-8 pt-6 border-t border-border text-center text-xs text-muted">
-              Para acessar o MVP em produção, use:<br/>
-              <b>admin@integrarecorp.com.br</b> / <b>CoderMaster2026</b>
+              Protegido por criptografia forte e controle de acesso estrito.
             </div>
           </CardContent>
         </Card>
