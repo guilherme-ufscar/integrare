@@ -12,15 +12,15 @@ export function Header() {
           </div>
           <span className="text-xl font-bold tracking-tight text-brand-primary">Integrare</span>
         </Link>
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-foreground">
+        <nav className="hidden md:flex flex-1 items-center justify-center gap-8 text-sm font-medium text-foreground">
           <Link href="#solucao" className="hover:text-brand-accent transition-colors">A Solução</Link>
           <Link href="#como-funciona" className="hover:text-brand-accent transition-colors">Como Funciona</Link>
           <Link href="#planos" className="hover:text-brand-accent transition-colors">Planos</Link>
           <Link href="/canal" className="text-brand-accent hover:text-brand-primary transition-colors font-semibold">Fazer Denúncia</Link>
         </nav>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 shrink-0">
           <Link href="#contato" className="hidden md:inline-flex">
-            <Button variant="outline" className="h-9">Falar com Consultor</Button>
+            <Button variant="outline" className="h-9 font-semibold text-brand-primary border-brand-primary/20 hover:bg-brand-primary hover:text-white">Falar com Consultor</Button>
           </Link>
           <Link href="/canal/acompanhar">
             <Button className="h-9">Acompanhar Relato</Button>
