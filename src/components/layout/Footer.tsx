@@ -47,7 +47,7 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-brand-surface/80">
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                <span>contato@integrare.com</span>
+                <span>contato@integrarecorp.com.br</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />

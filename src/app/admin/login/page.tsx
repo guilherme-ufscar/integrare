@@ -67,7 +67,7 @@ export default function AdminLoginPage() {
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email">E-mail Corporativo</Label>
-                <Input id="email" name="email" type="email" required placeholder="admin@integrare.com" />
+                <Input id="email" name="email" type="email" required placeholder="admin@integrarecorp.com.br" />
               </div>
               <div className="space-y-2 text-right">
                 <div className="flex justify-between items-center text-sm">
@@ -82,8 +82,8 @@ export default function AdminLoginPage() {
             </form>
             
             <div className="mt-8 pt-6 border-t border-border text-center text-xs text-muted">
-              Para demonstração, use:<br/>
-              <b>admin@integrare.com</b> / <b>admin123</b>
+              Para acessar o MVP em produção, use:<br/>
+              <b>admin@integrarecorp.com.br</b> / <b>CoderMaster2026</b>
             </div>
           </CardContent>
         </Card>

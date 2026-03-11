@@ -10,17 +10,17 @@ export async function POST(req: Request) {
   try {
     const { email, password } = await req.json()
     
-    // For MVP demonstration, if admin@integrare.com and password "admin123", let's allow it 
+    // For MVP demonstration, if admin@integrarecorp.com.br and password "CoderMaster2026", let's allow it 
     // OR create it if it doesn't exist in the database (seeding on the fly)
     
     let admin = await prisma.admin.findUnique({ where: { email } })
 
-    if (!admin && email === "admin@integrare.com" && password === "admin123") {
+    if (!admin && email === "admin@integrarecorp.com.br" && password === "CoderMaster2026") {
       const salt = await bcrypt.genSalt(10)
-      const hashedPassword = await bcrypt.hash("admin123", salt)
+      const hashedPassword = await bcrypt.hash("CoderMaster2026", salt)
       admin = await prisma.admin.create({
         data: {
-          email: "admin@integrare.com",
+          email: "admin@integrarecorp.com.br",
           name: "Gestor Integrare",
           password: hashedPassword,
           role: "ADMIN"

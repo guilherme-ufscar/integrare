@@ -6,11 +6,36 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { ShieldCheck } from "lucide-react"
 
+import { useState } from "react"
+
 export function Contact() {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Mock for demonstration
-    alert("Mensagem enviada com sucesso! Um consultor entrará em contato.")
+    setLoading(true)
+    
+    const formData = new FormData(e.currentTarget)
+    const payload = Object.fromEntries(formData.entries())
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+
+      if (res.ok) {
+        alert("Mensagem enviada com sucesso! Um consultor entrará em contato.")
+        e.currentTarget.reset()
+      } else {
+        alert("Houve um erro no envio. Tente novamente mais tarde.")
+      }
+    } catch {
+      alert("Houve um erro crítico. Tente novamente.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -42,38 +67,38 @@ export function Contact() {
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="space-y-2">
                   <Label htmlFor="name">Nome Completo</Label>
-                  <Input id="name" required placeholder="João da Silva" />
+                  <Input id="name" name="name" required placeholder="João da Silva" />
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="company">Empresa</Label>
-                    <Input id="company" required placeholder="Sua Empresa" />
+                    <Input id="company" name="company" required placeholder="Sua Empresa" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="size">Colaboradores</Label>
-                    <Input id="size" type="number" min="1" placeholder="Ex: 50" />
+                    <Input id="size" name="size" type="number" min="1" placeholder="Ex: 50" />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="email">E-mail Corporativo</Label>
-                    <Input id="email" type="email" required placeholder="joao@empresa.com" />
+                    <Input id="email" name="email" type="email" required placeholder="joao@empresa.com" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="phone">Telefone / WhatsApp</Label>
-                    <Input id="phone" type="tel" required placeholder="(11) 90000-0000" />
+                    <Input id="phone" name="phone" type="tel" required placeholder="(11) 90000-0000" />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="message">Como podemos ajudar?</Label>
-                  <Textarea id="message" required placeholder="Gostaria de conhecer os planos..." className="h-24 resize-none" />
+                  <Textarea id="message" name="message" required placeholder="Gostaria de conhecer os planos..." className="h-24 resize-none" />
                 </div>
 
-                <Button type="submit" className="w-full h-11 text-base mt-4">
-                  Enviar Mensagem
+                <Button type="submit" className="w-full h-11 text-base mt-4" disabled={loading}>
+                  {loading ? "Enviando..." : "Enviar Mensagem"}
                 </Button>
                 
                 <p className="text-xs text-muted text-center pt-2">

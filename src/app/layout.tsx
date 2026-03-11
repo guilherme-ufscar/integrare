@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   robots: "index, follow",
   openGraph: {
     type: "website",
-    url: "https://integrare.com.br",
+    url: "https://integrarecorp.com.br",
     title: "Integrare | Canal de Denúncias Terceirizado",
     description: "Plataforma de relatos e integridade corporativa da Integrare. Em conformidade com a LGPD.",
     siteName: "Integrare",
