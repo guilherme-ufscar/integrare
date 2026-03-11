@@ -56,7 +56,7 @@ export function Pricing() {
 
   return (
     <section className="py-24 bg-white" id="planos">
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="max-w-6xl mx-auto px-4 md:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-brand-secondary mb-4">
             A maturidade que o seu negócio exige
@@ -95,9 +95,11 @@ export function Pricing() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button className="w-full" variant={plan.buttonVariant as "default" | "outline"}>
-                  Solicitar este Plano
-                </Button>
+                <a href="#contato" className="block w-full">
+                  <Button className="w-full" variant={plan.buttonVariant as "default" | "outline"}>
+                    Solicitar este Plano
+                  </Button>
+                </a>
               </CardFooter>
             </Card>
           ))}

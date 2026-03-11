@@ -4,7 +4,7 @@ import { ShieldCheck, Lock, Mail, Phone } from "lucide-react"
 export function Footer() {
   return (
     <footer className="w-full bg-brand-primary text-brand-surface py-12 md:py-16">
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="max-w-6xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
@@ -35,7 +35,7 @@ export function Footer() {
           <div>
             <h4 className="font-semibold text-white mb-4">Canal de Denúncias</h4>
             <ul className="space-y-3 text-sm text-brand-surface/80">
-              <li><Link href="/canal" className="text-danger font-medium hover:text-danger/80 transition-colors">Relatar um Incidente</Link></li>
+              <li><Link href="/canal" className="text-brand-surface font-semibold hover:text-white transition-colors">Relatar um Incidente</Link></li>
               <li><Link href="/canal/acompanhar" className="hover:text-white transition-colors">Acompanhar Protocolo</Link></li>
               <li><Link href="/privacidade" className="hover:text-white transition-colors">Política de Privacidade</Link></li>
               <li><Link href="/termos" className="hover:text-white transition-colors">Termos de Uso</Link></li>

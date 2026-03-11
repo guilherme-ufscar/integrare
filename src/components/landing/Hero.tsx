@@ -6,7 +6,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden bg-brand-primary text-white pt-24 pb-32">
       <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
-      <div className="container relative z-10 mx-auto px-4 md:px-8 flex flex-col items-center text-center">
+      <div className="max-w-6xl relative z-10 mx-auto px-4 md:px-8 flex flex-col items-center text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-brand-surface text-sm font-medium mb-8">
           <ShieldCheck className="w-4 h-4" />
           <span>Proteja sua empresa. Cumpra a lei.</span>

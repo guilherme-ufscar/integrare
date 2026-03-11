@@ -12,7 +12,7 @@ export function Benefits() {
 
   return (
     <section className="py-24 bg-brand-surface border-t border-border">
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="max-w-6xl mx-auto px-4 md:px-8">
         <div className="flex flex-col md:flex-row gap-16 items-center">
           <div className="md:w-1/2">
             <h2 className="text-3xl md:text-4xl font-bold text-brand-secondary mb-6 leading-tight">

@@ -5,7 +5,7 @@ import { ShieldCheck } from "lucide-react"
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
+      <div className="max-w-6xl mx-auto flex h-16 items-center justify-between px-4 md:px-8">
         <Link href="/" className="flex items-center gap-2">
           <div className="flex items-center justify-center p-1.5 bg-brand-primary rounded-lg">
             <ShieldCheck className="w-5 h-5 text-white" />
@@ -16,7 +16,7 @@ export function Header() {
           <Link href="#solucao" className="hover:text-brand-accent transition-colors">A Solução</Link>
           <Link href="#como-funciona" className="hover:text-brand-accent transition-colors">Como Funciona</Link>
           <Link href="#planos" className="hover:text-brand-accent transition-colors">Planos</Link>
-          <Link href="/canal" className="text-danger hover:text-danger/80 transition-colors font-semibold">Fazer Denúncia</Link>
+          <Link href="/canal" className="text-brand-accent hover:text-brand-primary transition-colors font-semibold">Fazer Denúncia</Link>
         </nav>
         <div className="flex items-center gap-4">
           <Link href="#contato" className="hidden md:inline-flex">

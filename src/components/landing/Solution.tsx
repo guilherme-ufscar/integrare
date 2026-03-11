@@ -4,7 +4,7 @@ import { MessageSquare, UploadCloud, PieChart, Users, KeyRound } from "lucide-re
 export function Solution() {
   return (
     <section className="py-24 bg-background" id="solucao">
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="max-w-6xl mx-auto px-4 md:px-8">
         <div className="flex flex-col md:flex-row gap-16 items-center">
           
           <div className="md:w-1/2">
