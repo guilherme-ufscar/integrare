@@ -17,6 +17,7 @@ export function Pricing() {
         "Até 20 relatos/mês",
       ],
       obs: "Caberá à sua empresa a triagem, investigação e decisão.",
+      price: "R$ 290",
       buttonVariant: "outline",
       popular: false
     },
@@ -33,6 +34,7 @@ export function Pricing() {
         "Até 50 relatos/mês",
       ],
       obs: "Triagem pela Integrare. Decisão no cliente.",
+      price: "R$ 890",
       buttonVariant: "default",
       popular: true
     },
@@ -49,6 +51,7 @@ export function Pricing() {
         "Relatos Ilimitados",
       ],
       obs: "Suporte constante para redução ativa do passivo.",
+      price: "R$ 2.400",
       buttonVariant: "outline",
       popular: false
     }
@@ -78,6 +81,10 @@ export function Pricing() {
               <CardHeader>
                 <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
                 <CardDescription className="h-10 text-brand-secondary/80">{plan.description}</CardDescription>
+                <div className="mt-4">
+                  <span className="text-xs text-muted uppercase tracking-wider">A partir de</span>
+                  <div className="text-3xl font-bold text-brand-primary mt-1">{plan.price}<span className="text-base font-normal text-muted">/mês</span></div>
+                </div>
               </CardHeader>
               <CardContent className="flex-1">
                 <ul className="space-y-4 mt-4">
