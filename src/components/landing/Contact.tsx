@@ -48,8 +48,8 @@ export function Contact() {
               Fale com a Equipe de Atendimento Integrare
             </h2>
             <p className="text-lg text-muted mb-8">
-              Converse com especialistas. Vamos avaliar o momento jurídico da sua empresa e propor 
-              o melhor setup do Canal de Denúncias, protegendo seu ambiente e minimizando riscos 
+              Converse com nossa equipe. Vamos avaliar o momento da sua empresa e propor
+              o melhor setup do Canal de Relacionamento, protegendo seu ambiente e minimizando riscos
               regulatórios.
             </p>
             <div className="flex gap-4 items-start mb-6">

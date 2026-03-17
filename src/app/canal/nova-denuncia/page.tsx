@@ -40,7 +40,7 @@ export default function NovaDenunciaPage() {
         setCredentials({ protocol: result.protocol, accessKey: result.accessKey })
         setSuccess(true)
       } else {
-        alert(result.error || "Erro ao criar denúncia")
+        alert(result.error || "Erro ao criar relato")
       }
     } catch (err) {
       alert("Erro de conexão. Tente novamente.")

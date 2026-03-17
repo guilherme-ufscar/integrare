@@ -13,11 +13,11 @@ export function Hero() {
         </div>
         
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 max-w-4xl leading-tight">
-          Canal de Denúncias Terceirizado, Seguro e 100% Digital
+          Canal de Relacionamento Terceirizado, Seguro e 100% Digital
         </h1>
-        
+
         <p className="text-lg md:text-xl text-brand-surface/90 max-w-2xl mb-10 leading-relaxed">
-          Garantia de anonimato, conformidade com a LGPD e respaldo nas Leis 14.457/22 e 14.611/23. Proteja o ambiente corporativo e reduza passivos trabalhistas.
+          Garantia de anonimato, conformidade com a LGPD e respaldo nas Leis 14.457/22, 14.611/23 e NR-01 (riscos psicossociais). Proteja o ambiente corporativo e reduza passivos trabalhistas.
         </p>
         
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">

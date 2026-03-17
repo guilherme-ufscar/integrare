@@ -89,7 +89,7 @@ export default function AcompanharPage() {
             <ArrowLeft className="w-4 h-4 mr-1" /> Voltar
           </Link>
           <h1 className="text-3xl font-bold text-brand-secondary mb-2">Acompanhe seu Relato</h1>
-          <p className="text-muted text-sm">Insira suas credenciais geradas no momento da denúncia.</p>
+          <p className="text-muted text-sm">Insira suas credenciais geradas no momento do relato.</p>
         </div>
 
         <Card className="border-border shadow-md">
@@ -188,13 +188,13 @@ export default function AcompanharPage() {
 
               {/* Chat Messages */}
               {report.messages.map((msg: any) => (
-                <div key={msg.id} className={`flex ${msg.role === "DENUNCIANTE" ? "justify-start" : "justify-end"}`}>
-                  <div className={`p-4 rounded-2xl max-w-[85%] shadow-sm ${msg.role === "DENUNCIANTE" ? "bg-white border border-border rounded-tl-none" : "bg-brand-primary text-white rounded-tr-none"}`}>
-                    <p className={`text-xs font-medium mb-2 flex items-center justify-between ${msg.role === "DENUNCIANTE" ? "text-brand-primary" : "text-white/80"}`}>
-                      <span>{msg.role === "DENUNCIANTE" ? "SUA MENSAGEM" : "COMITÊ DE ÉTICA"}</span>
-                      <span className={`font-normal text-[10px] ml-4 ${msg.role === "DENUNCIANTE" ? "text-muted" : "text-white/60"}`}>{formatDate(msg.createdAt)}</span>
+                <div key={msg.id} className={`flex ${msg.role === "INFORMANTE" ? "justify-start" : "justify-end"}`}>
+                  <div className={`p-4 rounded-2xl max-w-[85%] shadow-sm ${msg.role === "INFORMANTE" ? "bg-white border border-border rounded-tl-none" : "bg-brand-primary text-white rounded-tr-none"}`}>
+                    <p className={`text-xs font-medium mb-2 flex items-center justify-between ${msg.role === "INFORMANTE" ? "text-brand-primary" : "text-white/80"}`}>
+                      <span>{msg.role === "INFORMANTE" ? "SUA MENSAGEM" : "COMITÊ DE ÉTICA"}</span>
+                      <span className={`font-normal text-[10px] ml-4 ${msg.role === "INFORMANTE" ? "text-muted" : "text-white/60"}`}>{formatDate(msg.createdAt)}</span>
                     </p>
-                    <p className={`text-sm whitespace-pre-wrap ${msg.role === "DENUNCIANTE" ? "text-foreground" : "text-white"}`}>
+                    <p className={`text-sm whitespace-pre-wrap ${msg.role === "INFORMANTE" ? "text-foreground" : "text-white"}`}>
                       {msg.content}
                     </p>
                   </div>

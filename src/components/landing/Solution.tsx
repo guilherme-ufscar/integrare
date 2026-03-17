@@ -13,7 +13,7 @@ export function Solution() {
             </h2>
             <p className="text-lg text-muted mb-8 leading-relaxed">
               Não vendemos apenas um software, mas um instrumento de proteção jurídica e governança. 
-              Nossa solução é pensada de ponta a ponta para que o denunciante sinta segurança absoluta 
+              Nossa solução é pensada de ponta a ponta para que o informante sinta segurança absoluta
               e a empresa tenha controle absoluto.
             </p>
             
@@ -42,7 +42,7 @@ export function Solution() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-brand-secondary text-lg">Painel Gerencial Executivo</h4>
-                  <p className="text-muted">Dashboards inteligentes com categorização, triagem e relatórios que realmente ajudam na tomada de decisão.</p>
+                  <p className="text-muted">Dashboards inteligentes com triagem completa das informações e entrega de relatórios detalhados e bem fundamentados para a tomada de decisão.</p>
                 </div>
               </div>
             </div>
@@ -61,7 +61,7 @@ export function Solution() {
                 </CardHeader>
                 <CardContent className="p-6 space-y-4">
                   <div className="bg-brand-surface p-4 rounded-lg rounded-tl-none inline-block max-w-[85%]">
-                    <p className="text-sm font-medium text-brand-primary mb-1">Denunciante #81920</p>
+                    <p className="text-sm font-medium text-brand-primary mb-1">Informante #81920</p>
                     <p className="text-sm text-foreground">O assédio ocorreu novamente na filial norte ontem à tarde. Anexei as evidências no chamado inicial.</p>
                   </div>
                   <div className="flex justify-end">

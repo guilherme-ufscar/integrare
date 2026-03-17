@@ -9,7 +9,7 @@ export function Problem() {
             Por que sua empresa precisa de um canal externo?
           </h2>
           <p className="text-lg text-muted">
-            A ausência de um canal estruturado gera riscos silenciosos e passivos trabalhistas. Canais internos (como e-mail ou urna) não garantem o anonimato real e inibem denúncias fundamentais.
+            A ausência de um canal estruturado gera riscos silenciosos e passivos trabalhistas. Canais internos (como e-mail ou urna) não garantem o anonimato real e inibem relatos fundamentais.
           </p>
         </div>
 
@@ -20,7 +20,7 @@ export function Problem() {
             </div>
             <h3 className="text-xl font-bold text-brand-secondary mb-3">Obrigatoriedade Legal</h3>
             <p className="text-muted leading-relaxed">
-              Leis como a 14.457/22 (CIPA) e 14.611/23 estabelecem novas exigências. Um canal especializado ajuda você a manter a empresa em conformidade, prevenindo passivos trabalhistas.
+              Leis como a 14.457/22, 14.611/23 e a NR-01 (riscos psicossociais) estabelecem novas exigências. Um canal estruturado ajuda você a manter a empresa em conformidade, prevenindo passivos trabalhistas.
             </p>
           </div>
 

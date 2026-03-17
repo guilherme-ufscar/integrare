@@ -7,7 +7,7 @@ export default function CanalEntryPage() {
   return (
     <div className="container mx-auto px-4 py-12 max-w-4xl">
       <div className="text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-brand-secondary mb-4">Canal de Denúncias</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-brand-secondary mb-4">Canal de Relacionamento</h1>
         <p className="text-lg text-muted max-w-2xl mx-auto">
           Este é um ambiente isolado, seguro e operado por especialistas independentes. 
           Garantimos o sigilo absoluto da sua identidade, caso deseje relatar de forma anônima.
@@ -46,7 +46,7 @@ export default function CanalEntryPage() {
             </div>
             <CardTitle className="text-2xl">Acompanhar Relato</CardTitle>
             <CardDescription className="text-base mt-2">
-              Utilize esta opção se você já fez uma denúncia e possui o número do protocolo e a chave de acesso.
+              Utilize esta opção se você já fez um relato e possui o número do protocolo e a chave de acesso.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex-1 flex flex-col justify-end">

@@ -19,7 +19,7 @@ export function Header() {
           <Link href="#solucao" className="hover:text-brand-accent transition-colors">A Solução</Link>
           <Link href="#como-funciona" className="hover:text-brand-accent transition-colors">Como Funciona</Link>
           <Link href="#planos" className="hover:text-brand-accent transition-colors">Planos</Link>
-          <Link href="/canal" className="text-brand-accent hover:text-brand-primary transition-colors font-semibold">Fazer Denúncia</Link>
+          <Link href="/canal" className="text-brand-accent hover:text-brand-primary transition-colors font-semibold">Fazer Relato</Link>
         </nav>
         <div className="flex items-center gap-4 shrink-0">
           <Link href="#contato" className="hidden md:inline-flex">

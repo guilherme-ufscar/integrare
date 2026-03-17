@@ -18,7 +18,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-sm text-brand-surface/80 leading-relaxed mb-6">
-              Plataforma digital especializada em Canais de Denúncias parcerias corporativas, com foco em segurança, compliance e adequação legal.
+              Plataforma digital especializada em Canais de Relacionamento para parcerias corporativas, com foco em segurança, compliance e adequação legal.
             </p>
             <div className="flex items-center gap-2 text-sm text-brand-surface/80">
               <Lock className="w-4 h-4 text-brand-accent" />
@@ -37,7 +37,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-white mb-4">Canal de Denúncias</h4>
+            <h4 className="font-semibold text-white mb-4">Canal de Relacionamento</h4>
             <ul className="space-y-3 text-sm text-brand-surface/80">
               <li><Link href="/canal" className="text-brand-surface font-semibold hover:text-white transition-colors">Relatar um Incidente</Link></li>
               <li><Link href="/canal/acompanhar" className="hover:text-white transition-colors">Acompanhar Protocolo</Link></li>
@@ -55,7 +55,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                <span>(11) 4000-0000</span>
+                <span>(86) 99921-0196</span>
               </li>
             </ul>
           </div>
