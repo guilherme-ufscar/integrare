@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Check } from "lucide-react"
 
+const WA_NUMBER = "5586999210196"
+
 export function Pricing() {
   const plans = [
     {
@@ -19,7 +21,8 @@ export function Pricing() {
       obs: "Caberá à sua empresa a triagem, investigação e decisão.",
       price: "R$ 290",
       buttonVariant: "outline",
-      popular: false
+      popular: false,
+      waMessage: "Olá! Tenho interesse no Plano *Recepção Segura* (a partir de R$ 290/mês) da Integrare. Gostaria de saber mais detalhes e como contratar."
     },
     {
       name: "Canal Gerenciado",
@@ -34,12 +37,13 @@ export function Pricing() {
         "Até 50 relatos/mês",
       ],
       obs: "Triagem pela Integrare. Decisão no cliente.",
-      price: "R$ 890",
+      price: "R$ 590",
       buttonVariant: "default",
-      popular: true
+      popular: true,
+      waMessage: "Olá! Tenho interesse no Plano *Canal Gerenciado* (a partir de R$ 590/mês) da Integrare. Gostaria de saber mais detalhes e como contratar."
     },
     {
-      name: "Compliance 360",
+      name: "Compliance 360°",
       description: "Para governança completa. Nós apoiamos estrategicamente.",
       features: [
         "Tudo do plano Canal Gerenciado",
@@ -51,9 +55,10 @@ export function Pricing() {
         "Relatos Ilimitados",
       ],
       obs: "Suporte constante para redução ativa do passivo.",
-      price: "R$ 2.400",
+      price: "R$ 890",
       buttonVariant: "outline",
-      popular: false
+      popular: false,
+      waMessage: "Olá! Tenho interesse no Plano *Compliance 360°* (a partir de R$ 890/mês) da Integrare. Gostaria de saber mais detalhes e como contratar."
     }
   ]
 
@@ -65,7 +70,7 @@ export function Pricing() {
             A maturidade que o seu negócio exige
           </h2>
           <p className="text-lg text-muted">
-            Soluções modeladas para a realidade da sua empresa, escaláveis e projetadas 
+            Soluções modeladas para a realidade da sua empresa, escaláveis e projetadas
             para acompanhar o dezenvolvimento do seu departamento de compliance.
           </p>
         </div>
@@ -102,7 +107,12 @@ export function Pricing() {
                 </div>
               </CardContent>
               <CardFooter>
-                <a href="#contato" className="block w-full">
+                <a
+                  href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(plan.waMessage)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full"
+                >
                   <Button className="w-full" variant={plan.buttonVariant as "default" | "outline"}>
                     Solicitar este Plano
                   </Button>

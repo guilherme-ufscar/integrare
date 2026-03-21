@@ -7,6 +7,7 @@ import { HowItWorks } from "@/components/landing/HowItWorks"
 import { Benefits } from "@/components/landing/Benefits"
 import { Pricing } from "@/components/landing/Pricing"
 import { Contact } from "@/components/landing/Contact"
+import { WhatsAppWidget } from "@/components/landing/WhatsAppWidget"
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <WhatsAppWidget />
     </div>
   )
 }

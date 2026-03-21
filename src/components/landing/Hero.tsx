@@ -2,6 +2,8 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ShieldCheck, Lock, UserX, FileCheck } from "lucide-react"
 
+const WA_HERO_LINK = `https://wa.me/5586999210196?text=${encodeURIComponent("Olá! Gostaria de solicitar uma proposta do Canal de Denúncias da Integrare para a minha empresa.")}`
+
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-brand-primary text-white pt-24 pb-32">
@@ -11,7 +13,7 @@ export function Hero() {
           <ShieldCheck className="w-4 h-4" />
           <span>Proteja sua empresa. Cumpra a lei.</span>
         </div>
-        
+
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 max-w-4xl leading-tight">
           Canal de Relacionamento Terceirizado, Seguro e 100% Digital
         </h1>
@@ -19,13 +21,13 @@ export function Hero() {
         <p className="text-lg md:text-xl text-brand-surface/90 max-w-2xl mb-10 leading-relaxed">
           Garantia de anonimato, conformidade com a LGPD e respaldo nas Leis 14.457/22, 14.611/23 e NR-01 (riscos psicossociais). Proteja o ambiente corporativo e reduza passivos trabalhistas.
         </p>
-        
+
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-          <Link href="#contato" className="w-full sm:w-auto">
+          <a href={WA_HERO_LINK} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
             <Button size="lg" className="w-full bg-brand-accent hover:bg-brand-accent/90 text-white border-0">
               Solicitar Proposta
             </Button>
-          </Link>
+          </a>
           <Link href="#solucao" className="w-full sm:w-auto">
             <Button size="lg" variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">
               Conheça a Solução

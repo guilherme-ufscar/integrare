@@ -22,9 +22,14 @@ export function Header() {
           <Link href="/canal" className="text-brand-accent hover:text-brand-primary transition-colors font-semibold">Fazer Relato</Link>
         </nav>
         <div className="flex items-center gap-4 shrink-0">
-          <Link href="#contato" className="hidden md:inline-flex">
+          <a
+            href={`https://wa.me/5586999210196?text=${encodeURIComponent("Olá! Gostaria de falar com um consultor da Integrare sobre o Canal de Denúncias.")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex"
+          >
             <Button variant="outline" className="h-9 font-semibold text-brand-primary border-brand-primary/20 hover:bg-brand-primary hover:text-white">Falar com Consultor</Button>
-          </Link>
+          </a>
           <Link href="/canal/acompanhar">
             <Button className="h-9">Acompanhar Relato</Button>
           </Link>
