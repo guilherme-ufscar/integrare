@@ -75,10 +75,11 @@ export default async function PainelCasos({
     NAO_CLASSIFICADO: "text-gray-500 bg-gray-50 border-gray-200",
   }
 
-  function buildUrl(overrides: Record<string, string>) {
+  const currentParams = { status: sp.status || "", severity: sp.severity || "", category: sp.category || "" }
+
+  function pageUrl(p: number) {
     const params = new URLSearchParams()
-    const merged = { status: sp.status || "", severity: sp.severity || "", category: sp.category || "", ...overrides }
-    Object.entries(merged).forEach(([k, v]) => { if (v) params.set(k, v) })
+    Object.entries({ ...currentParams, page: String(p) }).forEach(([k, v]) => { if (v) params.set(k, v) })
     return `/painel/casos?${params.toString()}`
   }
 
@@ -91,12 +92,13 @@ export default async function PainelCasos({
 
       {/* Filtros */}
       <div className="flex flex-wrap gap-3">
-        <FilterSelect value={sp.status || ""} options={STATUS_OPTIONS} buildUrl={(v) => buildUrl({ status: v, page: "1" })} />
-        <FilterSelect value={sp.severity || ""} options={SEVERITY_OPTIONS} buildUrl={(v) => buildUrl({ severity: v, page: "1" })} />
+        <FilterSelect value={sp.status || ""} options={STATUS_OPTIONS} paramName="status" currentParams={currentParams} />
+        <FilterSelect value={sp.severity || ""} options={SEVERITY_OPTIONS} paramName="severity" currentParams={currentParams} />
         <FilterSelect
           value={sp.category || ""}
           options={[{ value: "", label: "Todas categorias" }, ...categories.map((c) => ({ value: c.category, label: c.category }))]}
-          buildUrl={(v) => buildUrl({ category: v, page: "1" })}
+          paramName="category"
+          currentParams={currentParams}
         />
       </div>
 
@@ -151,13 +153,13 @@ export default async function PainelCasos({
       {totalPages > 1 && (
         <div className="flex items-center gap-2">
           {page > 1 && (
-            <Link href={buildUrl({ page: String(page - 1) })} className="px-3 py-1.5 text-sm border border-[#D7E2DD] rounded-lg hover:bg-[#EAF4F0]">
+            <Link href={pageUrl(page - 1)} className="px-3 py-1.5 text-sm border border-[#D7E2DD] rounded-lg hover:bg-[#EAF4F0]">
               ← Anterior
             </Link>
           )}
           <span className="text-sm text-[#5F6B66]">Página {page} de {totalPages}</span>
           {page < totalPages && (
-            <Link href={buildUrl({ page: String(page + 1) })} className="px-3 py-1.5 text-sm border border-[#D7E2DD] rounded-lg hover:bg-[#EAF4F0]">
+            <Link href={pageUrl(page + 1)} className="px-3 py-1.5 text-sm border border-[#D7E2DD] rounded-lg hover:bg-[#EAF4F0]">
               Próxima →
             </Link>
           )}
