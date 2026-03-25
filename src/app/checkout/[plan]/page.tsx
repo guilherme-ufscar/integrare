@@ -292,11 +292,8 @@ export default function CheckoutPage({ params }: { params: Promise<{ plan: strin
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-10">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex items-center justify-center p-1.5 bg-[#123C33] rounded-lg">
-              <ShieldCheck className="w-5 h-5 text-white" />
-            </div>
-            <span className="font-bold text-[#123C33] text-lg">Integrare</span>
+          <Link href="/">
+            <img src="/files/logo.svg" alt="Integrare" className="h-9" />
           </Link>
           <div className="flex items-center gap-1 text-xs text-[#5F6B66]">
             <Lock className="w-3.5 h-3.5" />

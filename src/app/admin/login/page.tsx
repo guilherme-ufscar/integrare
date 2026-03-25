@@ -40,12 +40,7 @@ export default function AdminLoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-[#F8FAF9] px-4">
       <div className="max-w-md w-full">
         <div className="flex justify-center mb-8">
-          <div className="flex items-center gap-2">
-            <div className="flex items-center justify-center p-2 bg-[#123C33] rounded-xl">
-              <ShieldCheck className="w-8 h-8 text-white" />
-            </div>
-            <span className="text-3xl font-bold tracking-tight text-[#123C33]">Integrare</span>
-          </div>
+          <img src="/files/logo.svg" alt="Integrare" className="h-10" />
         </div>
 
         <div className="bg-white rounded-2xl border border-[#D7E2DD] shadow-xl p-8">

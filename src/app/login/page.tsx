@@ -53,11 +53,8 @@ function LoginContent() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="flex justify-center mb-8">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex items-center justify-center p-2 bg-[#123C33] rounded-xl">
-              <ShieldCheck className="w-7 h-7 text-white" />
-            </div>
-            <span className="text-2xl font-bold tracking-tight text-[#123C33]">Integrare</span>
+          <Link href="/">
+            <img src="/files/logo.svg" alt="Integrare" className="h-10" />
           </Link>
         </div>
 
