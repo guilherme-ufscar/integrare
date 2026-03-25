@@ -2,6 +2,7 @@ import { getClientSession } from "@/lib/auth"
 import { redirect } from "next/navigation"
 import { PrismaClient } from "@prisma/client"
 import Link from "next/link"
+import { FilterSelect } from "./FilterSelect"
 
 const prisma = new PrismaClient()
 
@@ -90,10 +91,9 @@ export default async function PainelCasos({
 
       {/* Filtros */}
       <div className="flex flex-wrap gap-3">
-        <FilterSelect label="Status" value={sp.status || ""} options={STATUS_OPTIONS} buildUrl={(v) => buildUrl({ status: v, page: "1" })} />
-        <FilterSelect label="Gravidade" value={sp.severity || ""} options={SEVERITY_OPTIONS} buildUrl={(v) => buildUrl({ severity: v, page: "1" })} />
+        <FilterSelect value={sp.status || ""} options={STATUS_OPTIONS} buildUrl={(v) => buildUrl({ status: v, page: "1" })} />
+        <FilterSelect value={sp.severity || ""} options={SEVERITY_OPTIONS} buildUrl={(v) => buildUrl({ severity: v, page: "1" })} />
         <FilterSelect
-          label="Categoria"
           value={sp.category || ""}
           options={[{ value: "", label: "Todas categorias" }, ...categories.map((c) => ({ value: c.category, label: c.category }))]}
           buildUrl={(v) => buildUrl({ category: v, page: "1" })}
@@ -167,23 +167,3 @@ export default async function PainelCasos({
   )
 }
 
-function FilterSelect({ label, value, options, buildUrl }: {
-  label: string
-  value: string
-  options: { value: string; label: string }[]
-  buildUrl: (v: string) => string
-}) {
-  return (
-    <div className="relative">
-      <select
-        defaultValue={value}
-        onChange={(e) => { window.location.href = buildUrl(e.target.value) }}
-        className="appearance-none pl-3 pr-8 py-2 text-sm border border-[#D7E2DD] rounded-lg bg-white text-[#1E2421] focus:outline-none focus:border-[#123C33]"
-      >
-        {options.map((o) => (
-          <option key={o.value} value={o.value}>{o.label}</option>
-        ))}
-      </select>
-    </div>
-  )
-}
