@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import { PrismaClient } from "@prisma/client"
 import bcrypt from "bcryptjs"
-import { stripe, PLAN_INFO, getEmployeeTier, getPriceId } from "@/lib/stripe"
+import { stripe, PLAN_INFO, getPlanPrice } from "@/lib/stripe"
 import { signClientToken } from "@/lib/auth"
 import { cookies } from "next/headers"
 
@@ -56,14 +56,20 @@ export async function POST(req: Request) {
       metadata: { companyName, contactName: name, phone: phone || "" },
     })
 
-    // Obter priceId correto com base na faixa de colaboradores
-    const tier = getEmployeeTier(Number(employees) || 50)
-    const priceId = getPriceId(plan, tier)
+    // Calcular valor dinamicamente com base no plano e número de colaboradores
+    const amount = getPlanPrice(plan, Number(employees) || 50)
+
+    const price = await stripe.prices.create({
+      currency: "brl",
+      unit_amount: amount * 100, // em centavos
+      recurring: { interval: "month" },
+      product_data: { name: `${planInfo.label} — ${companyName}` },
+    })
 
     // Criar assinatura com payment method
     const subscription = await stripe.subscriptions.create({
       customer: customer.id,
-      items: [{ price: priceId }],
+      items: [{ price: price.id }],
       default_payment_method: paymentMethodId,
       payment_behavior: "default_incomplete",
       payment_settings: { save_default_payment_method: "on_subscription" },
