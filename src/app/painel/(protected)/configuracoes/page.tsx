@@ -20,9 +20,11 @@ export default async function PainelConfiguracoes() {
   let stripeNextBilling: string | null = null
   if (company.stripeSubscriptionId) {
     try {
-      const sub = await stripe.subscriptions.retrieve(company.stripeSubscriptionId)
+      const sub = await stripe.subscriptions.retrieve(company.stripeSubscriptionId) as any
       stripeSubStatus = sub.status
-      stripeNextBilling = new Date(sub.current_period_end * 1000).toLocaleDateString("pt-BR")
+      stripeNextBilling = sub.current_period_end
+        ? new Date(sub.current_period_end * 1000).toLocaleDateString("pt-BR")
+        : null
     } catch {
       stripeSubStatus = "erro ao buscar"
     }

@@ -87,9 +87,3 @@ export async function POST(req: Request) {
   }
 }
 
-// Necessário para leitura do raw body no Next.js App Router
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-}
