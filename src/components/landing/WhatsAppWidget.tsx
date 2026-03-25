@@ -7,21 +7,18 @@ const WA_MESSAGE = "Olá! Estou visitando o site da Integrare e gostaria de sabe
 
 export function WhatsAppWidget() {
   const [visible, setVisible] = useState(false)
-  const [dismissed, setDismissed] = useState(false)
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 2500)
     return () => clearTimeout(timer)
   }, [])
 
-  if (dismissed) return null
-
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       {visible && (
         <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 max-w-xs w-72 animate-fade-in-up relative">
           <button
-            onClick={() => setDismissed(true)}
+            onClick={() => setVisible(false)}
             className="absolute top-2 right-3 text-gray-400 hover:text-gray-600 text-lg leading-none"
             aria-label="Fechar"
           >
@@ -36,7 +33,7 @@ export function WhatsAppWidget() {
               />
             </div>
             <div>
-              <p className="font-semibold text-sm text-gray-800 leading-tight">Integrare Compliance</p>
+              <p className="font-semibold text-sm text-gray-800 leading-tight">Integrare</p>
               <span className="flex items-center gap-1 text-xs text-[#25D366]">
                 <span className="w-2 h-2 rounded-full bg-[#25D366] inline-block"></span>
                 Online agora
