@@ -10,13 +10,13 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   }
 
   return (
-    <div className="min-h-screen bg-background flex">
+    <div className="min-h-screen bg-[#F8FAF9] flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-brand-primary text-white flex flex-col">
+      <aside className="w-64 bg-[#123C33] text-white flex flex-col shrink-0">
         <div className="h-16 flex items-center px-6 border-b border-white/10">
           <Link href="/admin/dashboard" className="flex items-center gap-2">
-            <ShieldCheck className="w-5 h-5 text-brand-accent" />
-            <span className="font-bold tracking-tight">Comitê de Ética</span>
+            <ShieldCheck className="w-5 h-5 text-[#4ADE80]" />
+            <span className="font-bold tracking-tight">Admin Master</span>
           </Link>
         </div>
         <nav className="flex-1 py-6 px-4 space-y-1">
@@ -35,7 +35,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         </nav>
         <div className="p-4 border-t border-white/10">
           <div className="flex items-center gap-3 px-3 py-2 mb-2">
-            <div className="w-8 h-8 rounded-full bg-brand-accent flex items-center justify-center text-sm font-bold">
+            <div className="w-8 h-8 rounded-full bg-[#4ADE80] flex items-center justify-center text-sm font-bold text-[#123C33]">
               {session.name?.charAt(0) || "A"}
             </div>
             <div className="text-sm">
@@ -44,8 +44,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             </div>
           </div>
           <Link
-            href="/admin/login"
-            className="flex items-center gap-3 px-3 py-2 text-sm rounded-lg hover:bg-danger/20 text-danger hover:text-danger-foreground transition-colors w-full text-left"
+            href="/api/admin/logout"
+            className="flex items-center gap-3 px-3 py-2 text-sm rounded-lg hover:bg-red-500/20 text-red-300 hover:text-red-200 transition-colors w-full"
           >
             <LogOut className="w-4 h-4" /> Sair do Sistema
           </Link>
@@ -54,11 +54,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col h-screen overflow-hidden">
-        <header className="h-16 bg-white border-b border-border flex items-center px-8 justify-between shrink-0">
-          <h2 className="text-lg font-semibold text-brand-secondary">Painel Administrativo</h2>
-          <div className="flex items-center gap-4 text-sm text-muted">
-            <span>Integrare Compliance</span>
-          </div>
+        <header className="h-16 bg-white border-b border-[#D7E2DD] flex items-center px-8 justify-between shrink-0">
+          <h2 className="text-lg font-semibold text-[#1E2421]">Painel Administrativo</h2>
+          <span className="text-sm text-[#5F6B66]">Integrare</span>
         </header>
         <div className="flex-1 overflow-auto p-8">
           {children}
