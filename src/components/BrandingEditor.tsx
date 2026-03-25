@@ -3,6 +3,12 @@
 import { useState, useRef } from "react"
 import { Upload, X, Palette } from "lucide-react"
 
+/* eslint-disable @next/next/no-img-element */
+function LogoImg({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return <img src={src} alt={alt} className={className} />
+}
+/* eslint-enable @next/next/no-img-element */
+
 interface BrandingEditorProps {
   companyId: string
   apiUrl: string // "/api/client/branding" ou "/api/admin/companies/:id"
@@ -87,8 +93,7 @@ export function BrandingEditor({
         <div className="flex items-center gap-4">
           <div className="w-24 h-16 rounded-lg border border-[#D7E2DD] bg-[#F8FAF9] flex items-center justify-center overflow-hidden">
             {logo ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={logo} alt="Logo" className="object-contain w-full h-full p-1" />
+              <LogoImg src={logo} alt="Logo" className="object-contain w-full h-full p-1" />
             ) : (
               <span className="text-xs text-[#5F6B66]">Sem logo</span>
             )}
@@ -164,8 +169,7 @@ export function BrandingEditor({
       <div className="rounded-lg border border-[#D7E2DD] overflow-hidden">
         <div className="px-4 py-2 flex items-center gap-3" style={{ backgroundColor: primary }}>
           {logo ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={logo} alt="Logo preview" className="object-contain h-6 w-auto max-w-[100px]" />
+            <LogoImg src={logo} alt="Logo preview" className="object-contain h-6 w-auto max-w-[100px]" />
           ) : (
             <span className="text-sm font-bold text-white">Sua Empresa</span>
           )}

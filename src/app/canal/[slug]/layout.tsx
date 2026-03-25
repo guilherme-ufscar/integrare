@@ -57,8 +57,7 @@ export default async function CanalSlugLayout({
         <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
           <div className="flex items-center gap-3">
             {company.brandLogo ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={company.brandLogo} alt={company.name} className="object-contain h-9 w-auto max-w-[140px]" />
+              <img src={company.brandLogo} alt={company.name} className="object-contain h-9 w-auto max-w-[140px]" /> /* eslint-disable-line @next/next/no-img-element */
             ) : (
               <Image src="/files/logo.svg" alt="Integrare" width={120} height={32} className="brightness-0 invert" priority />
             )}
