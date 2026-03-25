@@ -1,7 +1,15 @@
 import { PrismaClient } from "@prisma/client"
 import { ShieldCheck } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const prisma = new PrismaClient()
+  const company = await prisma.company.findUnique({ where: { slug } })
+  return { title: company ? `Canal de Denúncias — ${company.name}` : "Canal de Denúncias" }
+}
 
 const prisma = new PrismaClient()
 
@@ -37,21 +45,26 @@ export default async function CanalSlugLayout({
     )
   }
 
+  const primary = company.brandPrimaryColor || "#123C33"
+  const secondary = company.brandSecondaryColor || "#EAF4F0"
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8FAF9]">
-      <header className="bg-white border-b border-[#D7E2DD]">
+    <div
+      className="min-h-screen flex flex-col bg-[#F8FAF9]"
+      style={{ "--brand-primary": primary, "--brand-secondary": secondary } as React.CSSProperties}
+    >
+      <header className="border-b border-[#D7E2DD]" style={{ backgroundColor: primary }}>
         <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center p-1.5 bg-[#123C33] rounded-lg">
-              <ShieldCheck className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <span className="text-sm font-bold text-[#123C33] block leading-tight">Integrare</span>
-              <span className="text-xs text-[#5F6B66] leading-tight">Canal de Denúncias — {company.name}</span>
-            </div>
+            {company.brandLogo ? (
+              <Image src={company.brandLogo} alt={company.name} width={120} height={36} className="object-contain h-9 w-auto" priority />
+            ) : (
+              <Image src="/files/logo.svg" alt="Integrare" width={120} height={32} className="brightness-0 invert" priority />
+            )}
+            <span className="text-xs text-white/70 border-l border-white/20 pl-3">Canal de Denúncias — {company.name}</span>
           </div>
-          <div className="flex items-center gap-1 text-xs text-[#5F6B66]">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#1F6B57]" />
+          <div className="flex items-center gap-1 text-xs text-white/80">
+            <ShieldCheck className="w-3.5 h-3.5" />
             Ambiente Seguro e Anônimo
           </div>
         </div>
@@ -59,7 +72,7 @@ export default async function CanalSlugLayout({
       <main className="flex-1">{children}</main>
       <footer className="py-5 border-t border-[#D7E2DD] bg-white text-center text-xs text-[#5F6B66]">
         Canal operado por{" "}
-        <Link href="/" className="text-[#123C33] hover:underline">Integrare Compliance</Link>{" "}
+        <Link href="/" style={{ color: primary }} className="hover:underline">Integrare Compliance</Link>{" "}
         em adequação à LGPD.
       </footer>
     </div>

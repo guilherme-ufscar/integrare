@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client"
 import Link from "next/link"
-import { Building2, ChevronRight } from "lucide-react"
+import { Building2, ChevronRight, Plus } from "lucide-react"
 
 const prisma = new PrismaClient()
 
@@ -32,6 +32,12 @@ export default async function AdminEmpresas() {
           <h1 className="text-2xl font-bold text-[#1E2421]">Empresas</h1>
           <p className="text-sm text-[#5F6B66] mt-1">{companies.length} empresa{companies.length !== 1 ? "s" : ""} cadastrada{companies.length !== 1 ? "s" : ""}</p>
         </div>
+        <Link
+          href="/admin/empresas/nova"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#123C33] text-white text-sm font-medium hover:bg-[#1a5244] transition-colors"
+        >
+          <Plus className="w-4 h-4" /> Nova Empresa
+        </Link>
       </div>
 
       <div className="bg-white rounded-xl border border-[#D7E2DD] overflow-hidden">

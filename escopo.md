@@ -812,3 +812,4 @@ Toda a implementação deve ser pensada para parecer produto premium B2B, e não
 
 ## 24. Base de referência
 Este escopo deve ser executado considerando também o conteúdo do PDF de apresentação comercial, especialmente a proposta de valor, a explicação do problema, o fluxo do canal, os benefícios regulatórios, os planos, os serviços adicionais, os diferenciais e a expectativa de setup rápido.
+

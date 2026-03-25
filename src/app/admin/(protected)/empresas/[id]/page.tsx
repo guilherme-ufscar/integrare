@@ -3,6 +3,8 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { CompanyActions } from "./CompanyActions"
+import { BrandingEditor } from "@/components/BrandingEditor"
+import { QRCodeCard } from "@/components/QRCodeCard"
 
 const prisma = new PrismaClient()
 
@@ -62,8 +64,20 @@ export default async function AdminEmpresaDetalhe({ params }: { params: Promise<
         </div>
       </div>
 
+      {/* URL do canal + QR Code */}
+      <QRCodeCard slug={company.slug} companyName={company.name} />
+
       {/* Ações */}
       <CompanyActions companyId={company.id} currentStatus={company.status} />
+
+      {/* Personalização do canal */}
+      <BrandingEditor
+        companyId={company.id}
+        apiUrl={`/api/admin/companies/${company.id}`}
+        initialLogo={company.brandLogo}
+        initialPrimary={company.brandPrimaryColor}
+        initialSecondary={company.brandSecondaryColor}
+      />
 
       {/* Usuários */}
       <div className="bg-white rounded-xl border border-[#D7E2DD] p-6">

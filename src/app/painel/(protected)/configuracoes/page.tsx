@@ -2,6 +2,8 @@ import { getClientSession } from "@/lib/auth"
 import { redirect } from "next/navigation"
 import { PrismaClient } from "@prisma/client"
 import { stripe, PLAN_INFO } from "@/lib/stripe"
+import { BrandingEditor } from "@/components/BrandingEditor"
+import { QRCodeCard } from "@/components/QRCodeCard"
 
 const prisma = new PrismaClient()
 
@@ -99,16 +101,17 @@ export default async function PainelConfiguracoes() {
         </div>
       </div>
 
-      {/* URL do canal */}
-      <div className="bg-[#EAF4F0] rounded-xl border border-[#D7E2DD] p-6">
-        <h2 className="font-semibold text-[#1E2421] mb-2">URL do seu Canal de Denúncias</h2>
-        <code className="text-sm text-[#123C33] bg-white border border-[#D7E2DD] px-3 py-1.5 rounded-lg block w-full">
-          {typeof window !== "undefined" ? window.location.origin : "https://integrarecorp.com.br"}/canal/{company.slug}
-        </code>
-        <p className="text-xs text-[#5F6B66] mt-2">
-          Compartilhe esse link com seus colaboradores para que possam fazer denúncias de forma segura e anônima.
-        </p>
-      </div>
+      {/* Personalização */}
+      <BrandingEditor
+        companyId={company.id}
+        apiUrl="/api/client/branding"
+        initialLogo={company.brandLogo}
+        initialPrimary={company.brandPrimaryColor}
+        initialSecondary={company.brandSecondaryColor}
+      />
+
+      {/* URL do canal + QR Code */}
+      <QRCodeCard slug={company.slug} companyName={company.name} />
     </div>
   )
 }
