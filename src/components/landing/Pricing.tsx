@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Check, MessageCircle } from "lucide-react"
 import Link from "next/link"
 
@@ -22,7 +20,7 @@ export function Pricing() {
       priceFrom: "R$ 290",
       checkoutSlug: "basico",
       popular: false,
-      waMessage: "Olá! Tenho interesse no *Plano Básico* da Integrare. Gostaria de falar com um consultor."
+      waMessage: "Olá! Tenho interesse no *Plano Básico* da Integrare. Gostaria de falar com um consultor.",
     },
     {
       name: "Plano Intermediário",
@@ -39,7 +37,7 @@ export function Pricing() {
       priceFrom: "R$ 890",
       checkoutSlug: "intermediario",
       popular: true,
-      waMessage: "Olá! Tenho interesse no *Plano Intermediário* da Integrare. Gostaria de falar com um consultor."
+      waMessage: "Olá! Tenho interesse no *Plano Intermediário* da Integrare. Gostaria de falar com um consultor.",
     },
     {
       name: "Compliance 360°",
@@ -57,90 +55,93 @@ export function Pricing() {
       priceFrom: "R$ 2.400",
       checkoutSlug: "compliance-360",
       popular: false,
-      waMessage: "Olá! Tenho interesse no *Plano Compliance 360°* da Integrare. Gostaria de falar com um consultor."
-    }
+      waMessage: "Olá! Tenho interesse no *Plano Compliance 360°* da Integrare. Gostaria de falar com um consultor.",
+    },
   ]
 
   return (
     <section className="py-24 bg-white" id="planos">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-secondary mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1E2421] mb-4">
             A maturidade que o seu negócio exige
           </h2>
-          <p className="text-lg text-muted">
+          <p className="text-lg text-[#5F6B66]">
             Soluções modeladas para a realidade da sua empresa, escaláveis e projetadas
             para acompanhar o crescimento do seu departamento de compliance.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
           {plans.map((plan, idx) => (
-            <Card
+            <div
               key={idx}
-              className={`relative flex flex-col h-full ${
+              className={`relative flex flex-col rounded-2xl border bg-white overflow-hidden ${
                 plan.popular
-                  ? "border-brand-primary shadow-emerald-900/10 shadow-2xl scale-105 z-10"
-                  : "border-border"
+                  ? "border-[#123C33] shadow-2xl shadow-emerald-900/10 scale-105 z-10"
+                  : "border-[#D7E2DD]"
               }`}
             >
               {plan.popular && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-primary text-white px-4 py-1 rounded-full text-xs font-bold tracking-wider uppercase">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#123C33] text-white px-4 py-1 rounded-full text-xs font-bold tracking-wider uppercase">
                   O Mais Escolhido
                 </div>
               )}
-              <CardHeader>
-                <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
-                <CardDescription className="h-10 text-brand-secondary/80">{plan.description}</CardDescription>
+
+              <div className="p-6 border-b border-[#D7E2DD]">
+                <h3 className="text-xl font-bold text-[#1E2421] mb-1">{plan.name}</h3>
+                <p className="text-sm text-[#5F6B66] min-h-[40px]">{plan.description}</p>
                 <div className="mt-4">
-                  <span className="text-xs text-muted uppercase tracking-wider">A partir de</span>
-                  <div className="text-3xl font-bold text-brand-primary mt-1">
+                  <span className="text-xs text-[#5F6B66] uppercase tracking-wider">A partir de</span>
+                  <div className="text-3xl font-bold text-[#123C33] mt-1">
                     {plan.priceFrom}
-                    <span className="text-base font-normal text-muted">/mês</span>
+                    <span className="text-base font-normal text-[#5F6B66]">/mês</span>
                   </div>
                 </div>
-              </CardHeader>
-              <CardContent className="flex-1">
-                <ul className="space-y-4 mt-4">
+              </div>
+
+              <div className="p-6 flex-1">
+                <ul className="space-y-3">
                   {plan.features.map((feature, fIdx) => (
-                    <li key={fIdx} className="flex gap-3 text-sm text-foreground">
-                      <Check className="w-5 h-5 text-brand-accent shrink-0" />
+                    <li key={fIdx} className="flex gap-3 text-sm text-[#1E2421]">
+                      <Check className="w-5 h-5 text-[#1E8E5A] shrink-0 mt-0.5" />
                       <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="mt-8 pt-6 border-t border-border">
-                  <p className="text-xs text-muted mb-4 italic leading-relaxed">* {plan.obs}</p>
+                <div className="mt-6 pt-4 border-t border-[#D7E2DD]">
+                  <p className="text-xs text-[#5F6B66] italic leading-relaxed">* {plan.obs}</p>
                 </div>
-              </CardContent>
-              <CardFooter className="flex flex-col gap-3">
-                {/* Botão principal — checkout */}
-                <Link href={`/checkout/${plan.checkoutSlug}`} className="block w-full">
-                  <Button
-                    className="w-full"
-                    variant={plan.popular ? "default" : "outline"}
-                  >
-                    Assinar agora
-                  </Button>
+              </div>
+
+              <div className="p-6 pt-0 flex flex-col gap-3">
+                <Link
+                  href={`/checkout/${plan.checkoutSlug}`}
+                  className={`block w-full text-center py-2.5 rounded-xl font-semibold text-sm transition-colors ${
+                    plan.popular
+                      ? "bg-[#123C33] text-white hover:bg-[#0D2E27]"
+                      : "border-2 border-[#123C33] text-[#123C33] hover:bg-[#123C33] hover:text-white"
+                  }`}
+                >
+                  Assinar agora
                 </Link>
-                {/* Botão secundário — WhatsApp */}
                 <a
                   href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(plan.waMessage)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full text-sm text-muted hover:text-brand-primary transition-colors py-1"
+                  className="flex items-center justify-center gap-2 w-full text-sm text-[#5F6B66] hover:text-[#123C33] transition-colors py-1"
                 >
                   <MessageCircle className="w-3.5 h-3.5" />
                   Prefere falar com consultor?
                 </a>
-              </CardFooter>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
 
-        <div className="mt-16 text-center max-w-lg mx-auto bg-brand-surface p-6 rounded-2xl border border-border">
-          <h4 className="font-semibold text-brand-secondary mb-2">Serviços e Add-ons</h4>
-          <p className="text-sm text-muted">
+        <div className="mt-16 text-center max-w-lg mx-auto bg-[#EAF4F0] p-6 rounded-2xl border border-[#D7E2DD]">
+          <h4 className="font-semibold text-[#1E2421] mb-2">Serviços e Add-ons</h4>
+          <p className="text-sm text-[#5F6B66]">
             Integração via API (ERP e RH), Segundo Idioma (EN, ES), Treinamentos Adicionais e
             elaboração do seu Código de Ética e Conduta.
           </p>
