@@ -77,6 +77,21 @@ export const PLAN_INFO: Record<string, {
     ],
     setup: 0,
   },
+  teste: {
+    label: "Plano Teste",
+    dbPlan: "TESTE",
+    tiers: [
+      { max: 50, price: 1 },
+      { max: 150, price: 1 },
+      { max: 300, price: 1 },
+    ],
+    features: [
+      "Plano de teste — R$ 1,00",
+      "Acesso completo à plataforma",
+      "Usado apenas para validação",
+    ],
+    setup: 0,
+  },
   "compliance-360": {
     label: "Compliance 360°",
     dbPlan: "COMPLIANCE_360",
