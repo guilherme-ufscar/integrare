@@ -1,7 +1,7 @@
 import { getSession } from "@/lib/auth"
 import { redirect } from "next/navigation"
 import Link from "next/link"
-import { LayoutDashboard, LogOut, ShieldCheck, FileText } from "lucide-react"
+import { LayoutDashboard, LogOut, ShieldCheck, Building2 } from "lucide-react"
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const session = await getSession() as any
@@ -19,13 +19,19 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <span className="font-bold tracking-tight">Comitê de Ética</span>
           </Link>
         </div>
-        <nav className="flex-1 py-6 px-4 space-y-2">
-          <Link href="/admin/dashboard" className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white/10 text-white font-medium">
+        <nav className="flex-1 py-6 px-4 space-y-1">
+          <Link
+            href="/admin/dashboard"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 text-white/80 hover:text-white font-medium text-sm transition-colors"
+          >
             <LayoutDashboard className="w-4 h-4" /> Dashboard
           </Link>
-          <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-brand-surface/40 cursor-not-allowed">
-            <FileText className="w-4 h-4" /> Relatórios (Em Breve)
-          </div>
+          <Link
+            href="/admin/empresas"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 text-white/80 hover:text-white font-medium text-sm transition-colors"
+          >
+            <Building2 className="w-4 h-4" /> Empresas
+          </Link>
         </nav>
         <div className="p-4 border-t border-white/10">
           <div className="flex items-center gap-3 px-3 py-2 mb-2">
@@ -37,7 +43,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
               <p className="text-xs text-white/60">{session.role}</p>
             </div>
           </div>
-          <Link href="/admin/login" className="flex items-center gap-3 px-3 py-2 text-sm rounded-lg hover:bg-danger/20 text-danger hover:text-danger-foreground transition-colors w-full text-left">
+          <Link
+            href="/admin/login"
+            className="flex items-center gap-3 px-3 py-2 text-sm rounded-lg hover:bg-danger/20 text-danger hover:text-danger-foreground transition-colors w-full text-left"
+          >
             <LogOut className="w-4 h-4" /> Sair do Sistema
           </Link>
         </div>
@@ -46,7 +55,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       {/* Main Content */}
       <main className="flex-1 flex flex-col h-screen overflow-hidden">
         <header className="h-16 bg-white border-b border-border flex items-center px-8 justify-between shrink-0">
-          <h2 className="text-lg font-semibold text-brand-secondary">Visão Geral</h2>
+          <h2 className="text-lg font-semibold text-brand-secondary">Painel Administrativo</h2>
           <div className="flex items-center gap-4 text-sm text-muted">
             <span>Integrare Compliance</span>
           </div>

@@ -11,7 +11,15 @@ export async function signToken(payload: any) {
     .setIssuedAt()
     .setExpirationTime("8h")
     .sign(JWT_SECRET)
-  
+  return token
+}
+
+export async function signClientToken(payload: any) {
+  const token = await new SignJWT(payload)
+    .setProtectedHeader({ alg: "HS256" })
+    .setIssuedAt()
+    .setExpirationTime("24h")
+    .sign(JWT_SECRET)
   return token
 }
 
@@ -27,6 +35,13 @@ export async function verifyToken(token: string) {
 export async function getSession() {
   const cookieStore = await cookies()
   const token = cookieStore.get("integrare-admin-token")?.value
+  if (!token) return null
+  return await verifyToken(token)
+}
+
+export async function getClientSession() {
+  const cookieStore = await cookies()
+  const token = cookieStore.get("integrare-client-token")?.value
   if (!token) return null
   return await verifyToken(token)
 }

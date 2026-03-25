@@ -1,64 +1,63 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Check } from "lucide-react"
+import { Check, MessageCircle } from "lucide-react"
+import Link from "next/link"
 
 const WA_NUMBER = "5586999210196"
 
 export function Pricing() {
   const plans = [
     {
-      name: "Recepção Segura",
+      name: "Plano Básico",
       description: "Ideal para empresas com RH ou Jurídico já estruturado.",
       features: [
         "Portal anônimo criptografado",
         "Protocolo único por relato",
-        "Painel do cliente (Gestão dos Casos)",
+        "Painel do cliente — Gestão de Casos",
         "Chat assíncrono para apuração",
         "Upload protegido de evidências",
-        "Relatório mensal simples",
-        "Até 20 relatos/mês",
+        "Relatório mensal",
       ],
       obs: "Caberá à sua empresa a triagem, investigação e decisão.",
-      price: "R$ 290",
-      buttonVariant: "outline",
+      priceFrom: "R$ 290",
+      checkoutSlug: "basico",
       popular: false,
-      waMessage: "Olá! Tenho interesse no Plano *Recepção Segura* (a partir de R$ 290/mês) da Integrare. Gostaria de saber mais detalhes e como contratar."
+      waMessage: "Olá! Tenho interesse no *Plano Básico* da Integrare. Gostaria de falar com um consultor."
     },
     {
-      name: "Canal Gerenciado",
+      name: "Plano Intermediário",
       description: "Perfeito para médias empresas que precisam de apoio na triagem.",
       features: [
-        "Tudo do plano Recepção Segura",
+        "Tudo do Plano Básico",
         "Triagem e categorização dos casos",
         "Classificação técnica da gravidade",
         "Indicação primária de encaminhamento",
-        "Relatório analítico (gráficos/alertas)",
-        "Reuniões de Governança (mensal)",
-        "Até 50 relatos/mês",
+        "Relatório analítico com gráficos e alertas",
+        "Reuniões de Governança mensais",
       ],
-      obs: "Triagem pela Integrare. Decisão no cliente.",
-      price: "R$ 590",
-      buttonVariant: "default",
+      obs: "Triagem pela Integrare. Decisão permanece no cliente.",
+      priceFrom: "R$ 890",
+      checkoutSlug: "intermediario",
       popular: true,
-      waMessage: "Olá! Tenho interesse no Plano *Canal Gerenciado* (a partir de R$ 590/mês) da Integrare. Gostaria de saber mais detalhes e como contratar."
+      waMessage: "Olá! Tenho interesse no *Plano Intermediário* da Integrare. Gostaria de falar com um consultor."
     },
     {
       name: "Compliance 360°",
-      description: "Para governança completa. Nós apoiamos estrategicamente.",
+      description: "Para governança completa com apoio estratégico.",
       features: [
-        "Tudo do plano Canal Gerenciado",
-        "Apoio e gestão superior de casos",
+        "Tudo do Plano Intermediário",
+        "Gestão superior de casos",
         "Parecer jurídico-trabalhista nos relatos",
         "Recomendação formal de medidas corretivas",
         "Desenvolvimento do Código de Ética",
         "Relatório trimestral executivo",
-        "Relatos Ilimitados",
+        "Relatos ilimitados",
       ],
       obs: "Suporte constante para redução ativa do passivo.",
-      price: "R$ 890",
-      buttonVariant: "outline",
+      priceFrom: "R$ 2.400",
+      checkoutSlug: "compliance-360",
       popular: false,
-      waMessage: "Olá! Tenho interesse no Plano *Compliance 360°* (a partir de R$ 890/mês) da Integrare. Gostaria de saber mais detalhes e como contratar."
+      waMessage: "Olá! Tenho interesse no *Plano Compliance 360°* da Integrare. Gostaria de falar com um consultor."
     }
   ]
 
@@ -71,13 +70,20 @@ export function Pricing() {
           </h2>
           <p className="text-lg text-muted">
             Soluções modeladas para a realidade da sua empresa, escaláveis e projetadas
-            para acompanhar o dezenvolvimento do seu departamento de compliance.
+            para acompanhar o crescimento do seu departamento de compliance.
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {plans.map((plan, idx) => (
-            <Card key={idx} className={`relative flex flex-col h-full ${plan.popular ? 'border-brand-primary shadow-emerald-900/10 shadow-2xl scale-105 z-10' : 'border-border'}`}>
+            <Card
+              key={idx}
+              className={`relative flex flex-col h-full ${
+                plan.popular
+                  ? "border-brand-primary shadow-emerald-900/10 shadow-2xl scale-105 z-10"
+                  : "border-border"
+              }`}
+            >
               {plan.popular && (
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-primary text-white px-4 py-1 rounded-full text-xs font-bold tracking-wider uppercase">
                   O Mais Escolhido
@@ -88,7 +94,10 @@ export function Pricing() {
                 <CardDescription className="h-10 text-brand-secondary/80">{plan.description}</CardDescription>
                 <div className="mt-4">
                   <span className="text-xs text-muted uppercase tracking-wider">A partir de</span>
-                  <div className="text-3xl font-bold text-brand-primary mt-1">{plan.price}<span className="text-base font-normal text-muted">/mês</span></div>
+                  <div className="text-3xl font-bold text-brand-primary mt-1">
+                    {plan.priceFrom}
+                    <span className="text-base font-normal text-muted">/mês</span>
+                  </div>
                 </div>
               </CardHeader>
               <CardContent className="flex-1">
@@ -101,31 +110,39 @@ export function Pricing() {
                   ))}
                 </ul>
                 <div className="mt-8 pt-6 border-t border-border">
-                  <p className="text-xs text-muted mb-4 italic leading-relaxed">
-                    * {plan.obs}
-                  </p>
+                  <p className="text-xs text-muted mb-4 italic leading-relaxed">* {plan.obs}</p>
                 </div>
               </CardContent>
-              <CardFooter>
+              <CardFooter className="flex flex-col gap-3">
+                {/* Botão principal — checkout */}
+                <Link href={`/checkout/${plan.checkoutSlug}`} className="block w-full">
+                  <Button
+                    className="w-full"
+                    variant={plan.popular ? "default" : "outline"}
+                  >
+                    Assinar agora
+                  </Button>
+                </Link>
+                {/* Botão secundário — WhatsApp */}
                 <a
                   href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(plan.waMessage)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full"
+                  className="flex items-center justify-center gap-2 w-full text-sm text-muted hover:text-brand-primary transition-colors py-1"
                 >
-                  <Button className="w-full" variant={plan.buttonVariant as "default" | "outline"}>
-                    Solicitar este Plano
-                  </Button>
+                  <MessageCircle className="w-3.5 h-3.5" />
+                  Prefere falar com consultor?
                 </a>
               </CardFooter>
             </Card>
           ))}
         </div>
-        
+
         <div className="mt-16 text-center max-w-lg mx-auto bg-brand-surface p-6 rounded-2xl border border-border">
           <h4 className="font-semibold text-brand-secondary mb-2">Serviços e Add-ons</h4>
           <p className="text-sm text-muted">
-            Integração via API (ERP e RH), Segundo Idioma (EN, ES), Treinamentos Adicionais e elaboração do seu Código de Ética e Conduta.
+            Integração via API (ERP e RH), Segundo Idioma (EN, ES), Treinamentos Adicionais e
+            elaboração do seu Código de Ética e Conduta.
           </p>
         </div>
       </div>

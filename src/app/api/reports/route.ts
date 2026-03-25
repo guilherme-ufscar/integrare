@@ -15,22 +15,30 @@ function generateProtocol() {
 }
 
 function generateAccessKey() {
-  return crypto.randomBytes(6).toString("hex").toUpperCase() // 12 chars
+  return crypto.randomBytes(6).toString("hex").toUpperCase()
 }
 
 export async function POST(req: Request) {
   try {
     const body = await req.json()
-    const { category, title, description, dateOccurred, location } = body
+    const { category, title, description, dateOccurred, location, companySlug } = body
 
     if (!category || !description) {
       return NextResponse.json({ error: "Categoria e descrição são obrigatórios." }, { status: 400 })
     }
 
+    // Resolver companyId pelo slug, se informado
+    let companyId: string | null = null
+    if (companySlug) {
+      const company = await prisma.company.findUnique({ where: { slug: companySlug } })
+      if (!company || company.status !== "ACTIVE") {
+        return NextResponse.json({ error: "Canal não encontrado ou inativo." }, { status: 404 })
+      }
+      companyId = company.id
+    }
+
     const protocol = generateProtocol()
     const accessKey = generateAccessKey()
-    
-    // Hash the access key so the server doesn't know the raw key
     const salt = await bcrypt.genSalt(10)
     const hashKey = await bcrypt.hash(accessKey, salt)
 
@@ -39,21 +47,20 @@ export async function POST(req: Request) {
         protocol,
         hashKey,
         category,
-        title,
+        title: title || null,
         description,
-        dateOccurred,
-        location,
+        dateOccurred: dateOccurred || null,
+        location: location || null,
         status: "NOVO",
-        severity: "NAO_CLASSIFICADO"
-      }
+        severity: "NAO_CLASSIFICADO",
+        companyId,
+      },
     })
 
-    return NextResponse.json({
-      success: true,
-      protocol: report.protocol,
-      accessKey: accessKey // the plain key is returned ONCE to the user
-    }, { status: 201 })
-
+    return NextResponse.json(
+      { success: true, protocol: report.protocol, accessKey },
+      { status: 201 }
+    )
   } catch (error) {
     console.error("Erro ao criar denúncia:", error)
     return NextResponse.json({ error: "Erro interno ao processar a denúncia." }, { status: 500 })
