@@ -107,7 +107,11 @@ export default function PainelCasoDetalhePage({ params }: { params: Promise<{ id
             {report.dateOccurred && (
               <div>
                 <p className="text-[#5F6B66] text-xs mb-0.5">Data do ocorrido</p>
-                <p className="text-[#1E2421]">{report.dateOccurred}</p>
+                <p className="text-[#1E2421]">
+                  {report.dateOccurred
+                    ? new Date(report.dateOccurred + "T12:00:00").toLocaleDateString("pt-BR")
+                    : "—"}
+                </p>
               </div>
             )}
             {report.location && (
@@ -126,7 +130,7 @@ export default function PainelCasoDetalhePage({ params }: { params: Promise<{ id
             <select
               value={editStatus}
               onChange={(e) => setEditStatus(e.target.value)}
-              className="w-full text-sm border border-[#D7E2DD] rounded-lg px-3 py-2 focus:outline-none focus:border-[#123C33]"
+              className="w-full text-sm text-[#1E2421] border border-[#D7E2DD] rounded-lg px-3 py-2 focus:outline-none focus:border-[#123C33]"
             >
               {STATUS_OPTIONS.map((s) => (
                 <option key={s} value={s}>{s.replace(/_/g, " ")}</option>
@@ -138,7 +142,7 @@ export default function PainelCasoDetalhePage({ params }: { params: Promise<{ id
             <select
               value={editSeverity}
               onChange={(e) => setEditSeverity(e.target.value)}
-              className="w-full text-sm border border-[#D7E2DD] rounded-lg px-3 py-2 focus:outline-none focus:border-[#123C33]"
+              className="w-full text-sm text-[#1E2421] border border-[#D7E2DD] rounded-lg px-3 py-2 focus:outline-none focus:border-[#123C33]"
             >
               {SEVERITY_OPTIONS.map((s) => (
                 <option key={s} value={s}>{s.replace(/_/g, " ")}</option>
@@ -198,7 +202,7 @@ export default function PainelCasoDetalhePage({ params }: { params: Promise<{ id
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Digite uma mensagem para o denunciante..."
             rows={2}
-            className="flex-1 text-sm border border-[#D7E2DD] rounded-lg px-3 py-2 resize-none focus:outline-none focus:border-[#123C33]"
+            className="flex-1 text-sm text-[#1E2421] placeholder-[#9BA8A3] border border-[#D7E2DD] rounded-lg px-3 py-2 resize-none focus:outline-none focus:border-[#123C33]"
           />
           <button
             type="submit"
