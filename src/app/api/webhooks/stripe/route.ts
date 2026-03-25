@@ -15,11 +15,15 @@ export async function POST(req: Request) {
   }
 
   let event: any
-  try {
-    event = stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET!)
-  } catch (err: any) {
-    console.error("[WEBHOOK] Assinatura inválida:", err.message)
-    return NextResponse.json({ error: "Assinatura inválida." }, { status: 400 })
+  if (process.env.STRIPE_WEBHOOK_SECRET) {
+    try {
+      event = stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET)
+    } catch (err: any) {
+      console.error("[WEBHOOK] Assinatura inválida:", err.message)
+      return NextResponse.json({ error: "Assinatura inválida." }, { status: 400 })
+    }
+  } else {
+    event = JSON.parse(body)
   }
 
   try {
