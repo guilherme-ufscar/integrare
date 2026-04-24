@@ -1,0 +1,9 @@
+src/app/admin/layout.tsx(33,30): error TS2339: Property 'charAt' does not exist on type '{}'.
+src/app/admin/layout.tsx(36,65): error TS2322: Type 'unknown' is not assignable to type 'ReactNode'.
+src/app/admin/layout.tsx(37,52): error TS2322: Type 'unknown' is not assignable to type 'ReactNode'.
+src/app/api/admin/login/route.ts(2,30): error TS2307: Cannot find module '@prisma/client' or its corresponding type declarations.
+src/app/api/admin/reports/[id]/messages/route.ts(2,30): error TS2307: Cannot find module '@prisma/client' or its corresponding type declarations.
+src/app/api/admin/reports/[id]/route.ts(2,30): error TS2307: Cannot find module '@prisma/client' or its corresponding type declarations.
+src/app/api/admin/reports/route.ts(2,30): error TS2307: Cannot find module '@prisma/client' or its corresponding type declarations.
+src/app/api/reports/[protocol]/route.ts(2,30): error TS2307: Cannot find module '@prisma/client' or its corresponding type declarations.
+src/app/api/reports/route.ts(2,30): error TS2307: Cannot find module '@prisma/client' or its corresponding type declarations.
