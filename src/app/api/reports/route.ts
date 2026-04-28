@@ -29,8 +29,8 @@ export async function POST(req: Request) {
     let companyId: string | null = null
     if (companySlug) {
       const company = await prisma.company.findUnique({ where: { slug: companySlug } })
-      if (!company || company.status !== "ACTIVE") {
-        return NextResponse.json({ error: "Canal não encontrado ou inativo." }, { status: 404 })
+      if (!company) {
+        return NextResponse.json({ error: "Canal não encontrado." }, { status: 404 })
       }
       companyId = company.id
     }
